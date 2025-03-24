@@ -119,11 +119,9 @@ $$ T(n) = n T(1) + n^5 \sum_{k=0}^{i-1} \frac{1}{3^{4k}} $$
  
 The sum $\(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\)$ converges to a constant value.
  
-This is because the series $\(\frac{1}{3^{4k}}\)$ is a geometric series with a common ratio less than [[[[[_____BROKEN FORMULA FIX THIS______ , reasoning still a good choice to add]]]]]]]]
- 
+This is due to in geometric series with a common ratio less than 1, the sum of the series converges to a finite value.
+(i.e. moving from one term to the next is done geometrically using a value less than 1, resulting in the sum of such a series being forced to converge to a constant due to the nature of geometric series)
 
-
-In geometric series with a common ratio less than 1, the sum of the series converges to a finite value.
 Therefore, the sum $\(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\)$ converges to a constant value, which simplifies the final form of the recurrence relation:
  
 $$ T(n) = n T(1) + n^5 \cdot \frac{81}{80} $$
@@ -136,7 +134,7 @@ $$ T(n) = O(n^5) $$
 
  
 As a result of this, the big O bound on the runtime for the provided mystery function is:
-$$ T(n) = O(n^5) $$
+$ T(n) = O(n^5) $
  
 
 Logically, this makes sense given the functionality and presumed behavior of the function.
