@@ -103,7 +103,7 @@ After i substitutions, the general form of the recurrence relation becomes:
  
 $$ T(n) = 3^i T\left(\frac{n}{3^i}\right) + \sum_{k=0}^{i-1} 3^k \left(\frac{n}{3^k}\right)^5 $$
  
-To simplify the sum, we let i = log_3 n, so \(\frac{n}{3^i} = 1\).
+To simplify the sum, we let i = log_3 n, so $\(\frac{n}{3^i} = 1\)$.
  
 
 
@@ -117,14 +117,14 @@ This gives us i = log_3 n, which is the number of times the function needs to re
 
 $$ T(n) = n T(1) + n^5 \sum_{k=0}^{i-1} \frac{1}{3^{4k}} $$
  
-The sum \(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\) converges to a constant value.
+The sum $\(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\)$ converges to a constant value.
  
-This is because the series \(\frac{1}{3^{4k}}\) is a geometric series with a common ratio less than 1 (\(\frac{1}{81}\)).
+This is because the series $\(\frac{1}{3^{4k}}\)$ is a geometric series with a common ratio less than 1 $(\(\frac{1}{81}\))$.
  
 
 
 In geometric series with a common ratio less than 1, the sum of the series converges to a finite value.
-Therefore, the sum \(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\) converges to a constant value, which simplifies the final form of the recurrence relation:
+Therefore, the sum $\(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\)$ converges to a constant value, which simplifies the final form of the recurrence relation:
  
 $$ T(n) = n T(1) + n^5 \cdot \frac{81}{80} $$
 
