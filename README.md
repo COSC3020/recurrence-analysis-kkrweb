@@ -133,7 +133,7 @@ $$ T(n) = O(n^5) $$
 
 
  
-As a result of this, the big O bound on the runtime for the provided mystery function is T(n) = O(n^5).
+As a result of this, the tight big O bound on the runtime for the provided mystery function is T(n) = O(n^5).
  
 
 Logically, this makes sense given the functionality and behavior of the function.
