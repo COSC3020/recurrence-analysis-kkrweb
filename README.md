@@ -119,7 +119,7 @@ $$ T(n) = n T(1) + n^5 \sum_{k=0}^{i-1} \frac{1}{3^{4k}} $$
  
 The sum $\(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\)$ converges to a constant value.
  
-This is because the series $\(\frac{1}{3^{4k}}\)$ is a geometric series with a common ratio less than 1 $(\(\frac{1}{81}\))$.
+This is because the series $\(\frac{1}{3^{4k}}\)$ is a geometric series with a common ratio less than [[[[[_____BROKEN FORMULA FIX THIS______ , reasoning still a good choice to add]]]]]]]]
  
 
 
