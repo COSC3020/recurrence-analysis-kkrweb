@@ -133,11 +133,10 @@ $$ T(n) = O(n^5) $$
 
 
  
-As a result of this, the big O bound on the runtime for the provided mystery function is:
-$ T(n) = O(n^5) $
+As a result of this, the big O bound on the runtime for the provided mystery function is T(n) = O(n^5).
  
 
-Logically, this makes sense given the functionality and presumed behavior of the function.
+Logically, this makes sense given the functionality and behavior of the function.
 The function's primary computational effort is concentrated in the nested loops, which dominate the overall time complexity.
 The recursive calls reduce the problem size by a factor of 3 each time, but the nested loops' complexity, O(n^5), grows significantly faster than the reduction achieved by the recursive calls.
 Therefore, the O(n^5) term dictates the overall time complexity, confirming that the function's running time increases rapidly with larger values of n.
