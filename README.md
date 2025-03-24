@@ -45,8 +45,105 @@ Feedback Request 1 Date: X
 //
 
 
-Response: Incomplete
+Response: Formatting WIP
 
+First, I wanted to make a write down of my step by step interpretation of the code and how it processes through the mystery function: The first considered condition is if the value of n is less than or equal to 1, the function returns.
+If that condition is not met, the else{ statement making up the bulk of the function is called. This else contains three recursive calls to mystery(n / 3) and a nested loop structure. 
+To derive the overall complexity of the function as requested, we need to consider the behavior of the nested loops as well as how the deepest layer of the nested loops behaves.
+Based off of that, we can grow our understanding of the behavior of the function from the deepest layer outward, eventually leading to a solution to the overall complexity of the function as requested.
+The runtime of the mystery recursive code overall can be derived as follows:
+I noted that the base case, where n ≤ 1, takes constant time, O(1). 
+I then considered the recursive case. In the recursive case, the function makes three calls to mystery(n / 3) and executes a nested loop that runs n^2 × n × n^2 = n^5 times.
+Each operation inside the innermost loop takes unit time, resulting in a total time complexity of O(n^5) for the loops.
+
+
+
+ 
+To find the overall running time of the whole function, we can express the recurrence relation as:
+ 
+$$ T(n) = 3T\left(\frac{n}{3}\right) + O(n^5) $$
+ 
+This above recurrence relation is derived from the fact that the function makes three recursive calls to mystery(n / 3), each contributing T(n / 3) towards computing the total running time, 
+and the nested loops contribute O(n^5) to the overall running time of the function.
+ 
+
+Following what was covered in the videos and class slides, I have elected to use the substitution method, similarly to what was done to solve the mergeSort runtime in provided examples.
+I begun by expanding the recurrence relation step by step. Initially, the relation begins as:
+ 
+$$ T(n) = 3T\left(\frac{n}{3}\right) + n^5 $$
+
+
+ 
+Substituting T(n / 3) into the equation, it results in:
+ 
+$$ T(n) = 3 \left[ 3T\left(\frac{n}{9}\right) + \left(\frac{n}{3}\right)^5 \right] + n^5 $$
+
+$$ T(n) = 3^2 T\left(\frac{n}{9}\right) + 3 \cdot \frac{n^5}{3^5} + n^5 $$
+
+$$ T(n) = 9T\left(\frac{n}{9}\right) + \frac{n^5}{9} + n^5 $$
+ 
+
+
+ 
+
+Continuing this process, we substitute T(n / 9) into the equation to further expand the relation:
+
+$$ T(n) = 9 \left[ 3T\left(\frac{n}{27}\right) + \left(\frac{n}{9}\right)^5 \right] + \frac{n^5}{9} + n^5 $$
+
+$$ T(n) = 3^3 T\left(\frac{n}{27}\right) + 9 \cdot \frac{n^5}{9^5} + \frac{n^5}{9} + n^5 $$
+
+$$ T(n) = 27T\left(\frac{n}{27}\right) + \frac{n^5}{3^5} + \frac{n^5}{9} + n^5 $$
+ 
+
+
+
+Following this pattern, we then can begin to draw conclusions regarding the behavior of the function after an arbitrary number of substitutions.
+ 
+After i substitutions, the general form of the recurrence relation becomes:
+ 
+$$ T(n) = 3^i T\left(\frac{n}{3^i}\right) + \sum_{k=0}^{i-1} 3^k \left(\frac{n}{3^k}\right)^5 $$
+ 
+To simplify the sum, we let i = log_3 n, so \(\frac{n}{3^i} = 1\).
+ 
+
+
+ 
+
+The choice of log_3 is based on the fact that the problem size is reduced by a factor of 3 in each recursive call.
+This means that after i recursive calls, the problem size becomes n / 3^i. 
+
+In order to reach the base case where the problem size is 1, we need to solve for i such that n / 3^i = 1. 
+This gives us i = log_3 n, which is the number of times the function needs to recursively call itself to reduce the problem size to 1.
+
+$$ T(n) = n T(1) + n^5 \sum_{k=0}^{i-1} \frac{1}{3^{4k}} $$
+ 
+The sum \(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\) converges to a constant value.
+ 
+This is because the series \(\frac{1}{3^{4k}}\) is a geometric series with a common ratio less than 1 (\(\frac{1}{81}\)).
+ 
+
+
+In geometric series with a common ratio less than 1, the sum of the series converges to a finite value.
+Therefore, the sum \(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\) converges to a constant value, which simplifies the final form of the recurrence relation:
+ 
+$$ T(n) = n T(1) + n^5 \cdot \frac{81}{80} $$
+
+$$ T(n) = O(n) + O(n^5) $$
+
+$$ T(n) = O(n^5) $$
+ 
+
+
+ 
+As a result of this, the big O bound on the runtime for the provided mystery function is:
+$$ T(n) = O(n^5) $$
+ 
+
+Logically, this makes sense given the functionality and presumed behavior of the function.
+The function's primary computational effort is concentrated in the nested loops, which dominate the overall time complexity.
+The recursive calls reduce the problem size by a factor of 3 each time, but the nested loops' complexity, O(n^5), grows significantly faster than the reduction achieved by the recursive calls.
+Therefore, the O(n^5) term dictates the overall time complexity, confirming that the function's running time increases rapidly with larger values of n.
+ 
 
 //
 
