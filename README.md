@@ -45,7 +45,7 @@ Feedback Request 1 Date: X
 //
 
 
-Response: Formatting WIP
+Response: Formatting WIP, some formulas are broken
 
 First, I wanted to make a write down of my step by step interpretation of the code and how it processes through the mystery function: The first considered condition is if the value of n is less than or equal to 1, the function returns.
 If that condition is not met, the else{ statement making up the bulk of the function is called. This else contains three recursive calls to mystery(n / 3) and a nested loop structure. 
