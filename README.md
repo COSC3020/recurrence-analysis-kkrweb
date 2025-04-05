@@ -38,7 +38,7 @@ might help with the notation for mathematical expressions.
 Name: Kane Kriz
 
 Start Date: 11 Feb 2025
-Last Edited: 4 April 2025
+Last Edited: 5 April 2025
 Feedback Request 1 Date: X
 
 
@@ -61,7 +61,7 @@ Each operation inside the innermost loop takes unit time, resulting in a total t
  
 To find the overall running time of the whole function, we can express the recurrence relation as:
  
-$$ T(n) = 3T\left(\frac{n}{3}\right) + \Theta(n^5) $$
+$T(n) = 3T\left(\frac{n}{3}\right) + \Theta(n^5)$
  
 This above recurrence relation is derived from the fact that the function makes three recursive calls to mystery(n / 3), each contributing T(n / 3) towards computing the total running time, 
 and the nested loops contribute Θ(n^5) to the overall running time of the function.
@@ -70,29 +70,28 @@ and the nested loops contribute Θ(n^5) to the overall running time of the funct
 Following what was covered in the videos and class slides, I have elected to use the substitution method, similarly to what was done to solve the mergeSort runtime in provided examples.
 I begun by expanding the recurrence relation step by step. Initially, the relation begins as:
  
-$$ T(n) = 3T\left(\frac{n}{3}\right) + n^5 $$
+$T(n) = 3T\left(\frac{n}{3}\right) + n^5$
 
 
  
 Substituting T(n / 3) into the equation, it results in:
  
-$$ T(n) = 3 \left[ 3T\left(\frac{n}{9}\right) + \left(\frac{n}{3}\right)^5 \right] + n^5 $$
+$T(n) = 3 \left[ 3T\left(\frac{n}{9}\right) + \left(\frac{n}{3}\right)^5 \right] + n^5$
 
-$$ T(n) = 3^2 T\left(\frac{n}{9}\right) + 3 * \frac{n^5}{3^5} + n^5 $$
+$T(n) = 3^2 T\left(\frac{n}{9}\right) + 3 * \frac{n^5}{3^5} + n^5$
 
-$$ T(n) = 9T\left(\frac{n}{9}\right) + \frac{n^5}{9} + n^5 $$
- 
+$T(n) = 9T\left(\frac{n}{9}\right) + \frac{n^5}{9} + n^5$
 
 
  
 
 Continuing this process, we substitute T(n / 9) into the equation to further expand the relation:
 
-$$ T(n) = 9 \left[ 3T\left(\frac{n}{27}\right) + \left(\frac{n}{9}\right)^5 \right] + \frac{n^5}{9} + n^5 $$
+$T(n) = 9 \left[ 3T\left(\frac{n}{27}\right) + \left(\frac{n}{9}\right)^5 \right] + \frac{n^5}{9} + n^5$
 
-$$ T(n) = 3^3 T\left(\frac{n}{27}\right) + 9 * \frac{n^5}{9^5} + \frac{n^5}{9} + n^5 $$
+$T(n) = 3^3 T\left(\frac{n}{27}\right) + 9 * \frac{n^5}{9^5} + \frac{n^5}{9} + n^5$
 
-$$ T(n) = 27T\left(\frac{n}{27}\right) + \frac{n^5}{3^5} + \frac{n^5}{9} + n^5 $$
+$T(n) = 27T\left(\frac{n}{27}\right) + \frac{n^5}{3^5} + \frac{n^5}{9} + n^5$
  
 
 
@@ -101,7 +100,7 @@ Following this pattern, we then can begin to draw conclusions regarding the beha
  
 After i substitutions, the general form of the recurrence relation becomes:
  
-$$ T(n) = 3^i T\left(\frac{n}{3^i}\right) + \sum_{k=0}^{i-1} 3^k \left(\frac{n}{3^k}\right)^5 $$
+$T(n) = 3^i T\left(\frac{n}{3^i}\right) + \sum_{k=0}^{i-1} 3^k \left(\frac{n}{3^k}\right)^5$
  
 To simplify the sum, we let i = log_3 n, so $\(\frac{n}{3^i} = 1\)$.
  
@@ -115,25 +114,24 @@ This means that after i recursive calls, the problem size becomes n / 3^i.
 In order to reach the base case where the problem size is 1, we need to solve for i such that n / 3^i = 1. 
 This gives us i = log_3 n, which is the number of times the function needs to recursively call itself to reduce the problem size to 1.
 
-$$ T(n) = n T(1) + n^5 * \frac{1 - (1/81)^{\log_3 n}}{1 - 1/81} $$
+$T(n) = n T(1) + n^5 * \frac{1 - (1/81)^{\log_3 n}}{1 - 1/81}$
  
-The sum $\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}$ is a finite geometric series with ratio $r = \frac{1}{81}$. Its closed form is:
-$$
-\sum_{k=0}^{i-1} \frac{1}{3^{4k}} = \frac{1 - (1/81)^{\log_3 n}}{1 - 1/81}
-$$
-For large $n$, $(1/81)^{\log_3 n} \approx 0$, so the sum approaches $\frac{81}{80}$ (a constant).
+The sum $\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}$ is a geometric series with ratio $r = \frac{1}{81}$. 
+
+Its closed form is:
+$\sum_{k=0}^{i-1} \frac{1}{3^{4k}} = \frac{1 - (1/81)^{\log_3 n}}{1 - 1/81}$
+
+For large n, $(1/81)^{\log_3 n} \approx 0$, so the sum approaches $\frac{81}{80}$, a constant.
  
 This is due to in geometric series with a common ratio less than 1, the sum of the series converges to a finite value.
 
 Therefore, the sum $\(\sum_{k=0}^{\log_3 n - 1} \frac{1}{3^{4k}}\)$ converges to a constant value, which simplifies the final form of the recurrence relation:
  
-$$ T(n) = n T(1) + n^5 * \frac{81}{80} $$
+$T(n) = n T(1) + n^5 * \frac{81}{80}$
 
 Since $\frac{81}{80}$ is a constant and $n^5$ dominates $n$ asymptotically:
 
-$$ 
-T(n) \in n * \Theta(1) + n^5 * \Theta(1) = \Theta(n^5) 
-$$
+$T(n) \in n * \Theta(1) + n^5 * \Theta(1) = \Theta(n^5)$
 
 As a result of this, the tight asymptotic bound on the runtime for the provided mystery function is T(n) ∈ Θ(n^5)
 
