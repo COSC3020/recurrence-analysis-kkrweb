@@ -46,8 +46,8 @@ Feedback Request 1 Date: 7 April 2025
 
 //
 
+Response: 
 
-Response: Formatting WIP, issues still exist
 
 First, I wanted to make a write down of my step by step interpretation of the code and how it processes through the mystery function: The first considered condition is if the value of n is less than or equal to 1, the function returns.
 
