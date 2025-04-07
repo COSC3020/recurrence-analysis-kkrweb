@@ -141,6 +141,8 @@ Since $\frac{81}{80}$ is a constant and $n^5$ dominates $n$ asymptotically:
 
 $T(n) \in n * \Theta(1) + n^5 * \Theta(1) = \Theta(n^5)$
 
+$T(n) \in \Theta(n^5)$
+
 (as the n^5 term dominates the constant and linear terms asymptocially)
 
 As a result of this, the tight asymptotic bound on the runtime for the provided mystery function is T(n) ∈ Θ(n^5)
