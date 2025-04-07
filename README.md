@@ -38,8 +38,10 @@ might help with the notation for mathematical expressions.
 Name: Kane Kriz
 
 Start Date: 11 Feb 2025
-Last Edited: 5 April 2025
-Feedback Request 1 Date: X
+
+Last Edited: 7 April 2025
+
+Feedback Request 1 Date: 7 April 2025
 
 
 //
@@ -48,12 +50,18 @@ Feedback Request 1 Date: X
 Response: Formatting WIP, issues still exist
 
 First, I wanted to make a write down of my step by step interpretation of the code and how it processes through the mystery function: The first considered condition is if the value of n is less than or equal to 1, the function returns.
+
 If that condition is not met, the else{ statement making up the bulk of the function is called. This else contains three recursive calls to mystery(n / 3) and a nested loop structure. 
+
 To derive the overall complexity of the function as requested, we need to consider the behavior of the nested loops as well as how the deepest layer of the nested loops behaves.
 Based off of that, we can grow our understanding of the behavior of the function from the deepest layer outward, eventually leading to a solution to the overall complexity of the function as requested.
+
 The runtime of the mystery recursive code overall can be derived as follows:
+
 I noted that the base case, where n ≤ 1, takes constant time, Θ(1).
+
 I then considered the recursive case. In the recursive case, the function makes three calls to mystery(n / 3) and executes a nested loop that runs n^2 × n × n^2 = n^5 times.
+
 Each operation inside the innermost loop takes unit time, resulting in a total time complexity of Θ(n^5) for the loops.
 
 
@@ -133,12 +141,16 @@ Since $\frac{81}{80}$ is a constant and $n^5$ dominates $n$ asymptotically:
 
 $T(n) \in n * \Theta(1) + n^5 * \Theta(1) = \Theta(n^5)$
 
+(as the n^5 term dominates the constant and linear terms asymptocially)
+
 As a result of this, the tight asymptotic bound on the runtime for the provided mystery function is T(n) ∈ Θ(n^5)
 
 Logically, this makes sense given the functionality and behavior of the function.
+
 The function's primary computational effort is concentrated in the nested loops, which dominate the overall time complexity.
 The recursive calls reduce the problem size by a factor of 3 each time, but the nested loops' complexity, Θ(n^5), grows significantly faster than the reduction achieved by the recursive calls.
-Therefore, the Θ(n^5) term dominates the overall time complexity, confirming that the function's running time increases rapidly with larger values of n.
+
+Therefore, the Θ(n^5) term dominates the overall time complexity, confirming that the function's running time increases rapidly with larger values of n, as analysed above.
  
 
 //
