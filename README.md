@@ -46,6 +46,12 @@ Feedback Request 1 Date: 7 April 2025
 
 //
 
+
+Feedback Request 2 Date: 9 April 2025
+
+
+//
+
 Response: 
 
 
@@ -69,7 +75,7 @@ Each operation inside the innermost loop takes unit time, resulting in a total t
  
 To find the overall running time of the whole function, we can express the recurrence relation as:
  
-$T(n) = 3T\left(\frac{n}{3}\right) + \Theta(n^5)$
+$T(n) = 3T\left(\frac{n}{3}\right) + c * n^5$
  
 This above recurrence relation is derived from the fact that the function makes three recursive calls to mystery(n / 3), each contributing T(n / 3) towards computing the total running time, 
 and the nested loops contribute Θ(n^5) to the overall running time of the function.
